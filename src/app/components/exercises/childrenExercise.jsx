@@ -1,6 +1,18 @@
 import React from "react";
 import CollapseWrapper from "../common/collapse";
 const ChildrenExercise = () => {
+    const FormComponent = ({ children }) => {
+        console.log(React.Children.toArray(children));
+        console.log(React.Children.count(children));
+        return React.Children.toArray(children).map((item, i) => {
+            return (
+                <div className="d-flex gap-2" key={i}>
+                    {i + 1} {item}
+                </div>
+            );
+        });
+    };
+
     return (
         <CollapseWrapper title="Упражнение">
             <p className="mt-3">
@@ -11,9 +23,11 @@ const ChildrenExercise = () => {
                 <code>React.Children.toArray</code>
             </p>
 
-            <Component />
-            <Component />
-            <Component />
+            <FormComponent>
+                <Component />
+                <Component />
+                <Component />
+            </FormComponent>
         </CollapseWrapper>
     );
 };
